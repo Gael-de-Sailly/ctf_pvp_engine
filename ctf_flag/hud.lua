@@ -1,9 +1,10 @@
 -- TODO: delete flags if they are removed (ctf.next, or captured)
 ctf.hud.register_part(function(player, name, tplayer)
 	if ctf.setting("flag.waypoints") then
-		for tname, team in pairs(ctf.teams) do
+		for i, tname in ipairs(ctf.team_list) do
+			team = ctf.teams[tname]
 			for _, flag in pairs(team.flags) do
-				local hud = "ctf:hud_" .. tname
+				local hud = "ctf:hud_" .. i
 				local flag_name = flag.name or tname .. "'s base"
 				local color = ctf.flag_colors[team.data.color]
 				if not color then
@@ -11,11 +12,13 @@ ctf.hud.register_part(function(player, name, tplayer)
 				end
 
 				if ctf.hud:exists(player, hud) then
+					ctf.hud:change(player, hud, "name", flag_name)
 					ctf.hud:change(player, hud, "world_pos", {
 						x = flag.x,
 						y = flag.y,
 						z = flag.z
 					})
+					ctf.hud:change(player, hud, "number", color)
 				else
 					ctf.hud:add(player, hud, {
 						hud_elem_type = "waypoint",
