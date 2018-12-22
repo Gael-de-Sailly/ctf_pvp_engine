@@ -133,6 +133,7 @@ function ctf.init()
 	-- Set up structures
 	ctf._defsettings = {}
 	ctf.teams = {}
+	ctf.team_list = {}
 	ctf.players = {}
 
 	-- See minetest.conf.example in the root of this subgame

@@ -37,7 +37,7 @@ function ctf_colors.update(player, name, tplayer)
 	local tcolor_text, tcolor_hex = ctf_colors.get_color(tplayer)
 
 	if ctf.setting("colors.hudtint") then
-		if tcolor_text == "red" or tcolor_text == "blue" then
+		if ctf_colors.colors[tcolor_text] then
 			print("tinting hud! " .. tcolor_hex)
 			local tint_color = "#" .. string.sub(tcolor_hex, 3)
 			player:hud_set_hotbar_image("ctf_colors_hotbar_" .. tcolor_text .. ".png")

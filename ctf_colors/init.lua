@@ -16,7 +16,17 @@ ctf_colors.colors = {
 }
 ctf_colors.irc_colors = {
 	red    = "4",
+	cyan   = "11",
 	blue   = "2",
+	purple = "6",
+	yellow = "8",
+	green  = "9",
+	pink   = "13",
+	silver = "15",
+	gray   = "14",
+	black  = "1",
+	orange = "5",
+	gold   = "7",
 }
 ctf.flag_colors = ctf_colors.colors
 

@@ -36,6 +36,8 @@ function ctf.create_team(name, data)
 		players = {}
 	}
 
+	table.insert(ctf.team_list, name)
+
 	for i = 1, #ctf.registered_on_new_team do
 		ctf.registered_on_new_team[i](ctf.teams[name])
 	end
@@ -53,6 +55,12 @@ function ctf.remove_team(name)
 		end
 		for i = 1, #team.flags do
 			team.flags[i].team = nil
+		end
+		for i, tname in ipairs(ctf.team_list) do
+			if tname == name then
+				table.remove(ctf.team_list, i)
+				break
+			end
 		end
 		ctf.teams[name] = nil
 		ctf.needs_save = true
