@@ -343,7 +343,7 @@ minetest.register_chatcommand("t", {
 				chatplus.log("<" .. name .. "> ** ".. param .. " **")
 			end
 
-			local color, colorHex = ctf_colors.get_color(ctf.player(name))
+			local color, colorHex = ctf_colors.get_player_color(name)
 			for username, to in pairs(team.players) do
 				minetest.chat_send_player(username,
 						minetest.colorize("#" .. colorHex:sub(3, 8), "<" .. name .. "> ** " .. param .. " **"))
@@ -360,8 +360,7 @@ minetest.register_chatcommand("t", {
 
 if minetest.global_exists("irc") then
 	function irc.playerMessage(name, message)
-		local tname = ctf.player(name).team
-		local color = ctf_colors.get_irc_color(ctf.player(name))
+		local color = ctf_colors.get_irc_color(name)
 		local clear = "\x0F"
 		if color then
 			color = "\x03" .. color
@@ -383,7 +382,7 @@ if minetest.global_exists("chatplus") then
 	end
 
 	function chatplus.send_message_to_sender(from, msg)
-		local color, colorHex = ctf_colors.get_color(ctf.player(from))
+		local color, colorHex = ctf_colors.get_player_color(from)
 		minetest.chat_send_player(from, minetest.colorize("#" .. colorHex:sub(3, 8), "<" .. from .. "> ") .. msg)
 	end
 
@@ -396,7 +395,7 @@ if minetest.global_exists("chatplus") then
 		if ctf.setting("chat.default") ~= "team" then
 			local team_name = ctf.player(from).team
 			if team_name then
-				local color, colorHex = ctf_colors.get_color(ctf.player(from))
+				local color, colorHex = ctf_colors.get_player_color(from)
 				minetest.chat_send_player(to,
 					minetest.colorize("#" .. colorHex:sub(3, 8), "<" .. from .. "> ") .. msg)
 				return false

@@ -37,5 +37,6 @@ ctf.register_on_init(function()
 	ctf._set("hud.teamname",               false)
 end)
 
+dofile(minetest.get_modpath("ctf_colors") .. "/util.lua")
 dofile(minetest.get_modpath("ctf_colors") .. "/hud.lua")
 dofile(minetest.get_modpath("ctf_colors") .. "/gui.lua")

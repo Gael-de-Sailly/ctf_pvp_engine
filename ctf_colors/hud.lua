@@ -1,26 +1,3 @@
-function ctf_colors.get_color(tplayer)
-	local team = ctf.team(tplayer.team)
-	local tcolor_text = nil
-	if team then
-		tcolor_text = team.data.color
-	end
-	local tcolor_hex = ctf.flag_colors[tcolor_text]
-	if not tcolor_hex then
-		tcolor_hex = "0x000000"
-	end
-
-	return tcolor_text, tcolor_hex
-end
-
-function ctf_colors.get_irc_color(tplayer)
-	local team = ctf.team(tplayer.team)
-	local tcolor_text = nil
-	if team then
-		tcolor_text = team.data.color
-	end
-	return ctf_colors.irc_colors[tcolor_text]
-end
-
 function ctf_colors.get_nametag_color(name, tplayer, tcolor_text, tcolor_hex)
 	if ctf.setting("colors.nametag.tcolor") then
 		return "0xFF" .. string.sub(tcolor_hex, 3)
@@ -34,7 +11,7 @@ function ctf_colors.update(player, name, tplayer)
 		player = minetest.get_player_by_name(name)
 	end
 
-	local tcolor_text, tcolor_hex = ctf_colors.get_color(tplayer)
+	local tcolor_text, tcolor_hex = ctf_colors.get_team_color(tplayer.team)
 
 	if ctf.setting("colors.hudtint") then
 		if ctf_colors.colors[tcolor_text] then
