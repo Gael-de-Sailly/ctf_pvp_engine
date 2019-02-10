@@ -440,7 +440,7 @@ else
 				end
 			end
 
-			local color, colorHex = ctf_colors.get_color(ctf.player(name))
+			local color, colorHex = ctf_colors.get_player_color(name)
 			local scolor = "#" .. colorHex:sub(3, 8)
 			minetest.chat_send_all(minetest.colorize(scolor, "<" .. name .. "> ") .. message)
 			return true
@@ -453,7 +453,7 @@ else
 	minetest.registered_chatcommands["me"].func = function(name, param)
 		local team_name = ctf.player(name).team
 		if team_name then
-			local color, colorHex = ctf_colors.get_color(ctf.player(name))
+			local color, colorHex = ctf_colors.get_player_color(name)
 			name = minetest.colorize("#" .. colorHex:sub(3, 8), "* " .. name)
 		else
 			name = "* ".. name
